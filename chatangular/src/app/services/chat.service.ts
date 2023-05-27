@@ -10,20 +10,21 @@ import { Injectable } from '@angular/core';
 export class ChatService {
   chats:any=[];
    constructor(private socket: SocketService) {
-    //this.onReciveMessage();
+    this.onReceiveMessage(); // Descomenta esta línea para habilitar la recepción de mensajes
   }
 
 
   sendMessage(messageInfo: any) {
     this.chats.push(messageInfo);
     this.socket.io.emit("sendMessage", messageInfo);
-    console.log(messageInfo); 
+    console.log(messageInfo);
   }
 
   onReceiveMessage(){
     this.socket.io.on("recieveMessage", (messageInfo)=>{
+      messageInfo.messageType = 2;
+      console.log(messageInfo.messageType);
       this.chats.push(messageInfo);
-      alert("nuevomensaje");
       console.log(messageInfo);
     });
   }

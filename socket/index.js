@@ -14,13 +14,8 @@ io.on('connection', (socket)=>{
     console.log("Nuevo user connectado")
     socket.on("sendMessage", (messageInfo)=>{
         console.log("enviando un mensaje")
-        socket.emit("recieveMessage", messageInfo); 
+        socket.broadcast.emit("recieveMessage", messageInfo); 
     }); 
-/*
-    socket.on("test", (objeto)=>{
-        console.log("escucha TEST con texto"+ objeto.text)
-        socket.emit("test2", objeto); 
-    });*/ 
 
 }); 
 
