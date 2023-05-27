@@ -1,3 +1,4 @@
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { ChatService } from './../../services/chat.service';
 import { SocketService } from './../../services/socket.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class ChatComponent implements OnInit {
 
   text = "";
-   constructor(public chat: ChatService){}
+  isLoggedIn = false;
+  isLoginFailed = false;
+  roles: string[] = [];
+
+   constructor(public chat: ChatService, private tokenStorage: TokenStorageService){}
   ngOnInit(): void {
+    console.log("welcome");
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
 
 }
 

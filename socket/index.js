@@ -19,10 +19,6 @@ io.on('connection', (socket)=>{
 
 }); 
 
-
-
-
-
 app.get('/',(req,res)=>{
     res.send('<h1>holamundo</h1>')
 });
